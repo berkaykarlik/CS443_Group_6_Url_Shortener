@@ -1,8 +1,9 @@
 package com.ariba.spring.url.shortener.service;
 
-import com.ariba.spring.url.shortener.dao.UrlDao;
+import com.ariba.spring.url.shortener.dao.UrlRepository;
 import com.ariba.spring.url.shortener.model.Url;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -10,19 +11,22 @@ import java.util.Map;
 @Service
 public class UrlService {
 
-    private UrlDao urlDao;
+    private final UrlRepository urlRepository;
 
     @Autowired
-    public UrlService(UrlDao urlDao) {
-        this.urlDao = urlDao;
+    public UrlService(UrlRepository urlRepository) {
+        this.urlRepository = urlRepository;
     }
 
-    public void addUrl (Url url){
-        urlDao.saveUrl(url);
+    public int addUrl (Url url){
+        return urlRepository.insertUrl(url);
     }
 
+    public Map<String,Url> getAllUrl(){
+        return urlRepository.findAll();
+    }
 
-    public Url getOriginalUrl(String id){
-        return urlDao.getUrlById(id);
+    public String getOriginalUrl(String id){
+        return urlRepository.getUrlById(id);
     }
 }
