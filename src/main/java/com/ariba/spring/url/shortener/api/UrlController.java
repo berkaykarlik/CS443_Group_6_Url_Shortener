@@ -1,39 +1,38 @@
 package com.ariba.spring.url.shortener.api;
 
+import com.ariba.spring.url.shortener.dao.UrlDao;
 import com.ariba.spring.url.shortener.model.Url;
 import com.ariba.spring.url.shortener.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Map;
 
-@RequestMapping("api/v1/url")
 @RestController
 public class UrlController {
 
     private final UrlService urlService;
 
+    private UrlDao urlDao;
+
     @Autowired
-    public UrlController(UrlService urlService) {
+    public UrlController(UrlService urlService,
+                         UrlDao urlDao) {
         this.urlService = urlService;
+        this.urlDao = urlDao;
     }
 
     @PostMapping
-    public void addUrl (@RequestBody Url url){
+    public Url addUrl (@RequestBody Url url){
         urlService.addUrl(url);
-    }
-
-    @GetMapping
-    public Map<String,Url> getAllUrl(){
-        return urlService.getAllUrl();
+        return url;
     }
 
     @GetMapping("/{id}")
     public RedirectView getOriginalUrl(@PathVariable("id") final String id){
-        String oUrl = urlService.getOriginalUrl(id);
+        Url oUrl = urlService.getUrlById(id);
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(oUrl);
+        redirectView.setUrl(oUrl.getUrl());
         return redirectView;
     }
 
