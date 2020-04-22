@@ -44,11 +44,14 @@ class App extends Component {
         count: this.state.count + 1
       }
     )
-    fetch('https://192.168.0.104:8080', {
+    fetch('http://192.168.1.23:8080', {
       method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        id: '123',
-        url: 'https://www.google.com/',
+        url: 'https://reactnative.dev/docs/network'
       }),
     }); 
     
