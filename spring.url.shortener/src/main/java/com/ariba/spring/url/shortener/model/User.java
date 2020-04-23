@@ -1,19 +1,30 @@
 package com.ariba.spring.url.shortener.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "User")
+import java.util.ArrayList;
+import java.util.UUID;
+
+@Document
 public class User {
+    @Id
+    private UUID id;
     private  String username;
     private  String password;
     private  String email;
-    private  String[] link_ids;
+    private ArrayList<String> link_ids;
+    private  int linkIndex;
 
-    public User(String username, String password, String email, String[] link_ids) {
+    public User(@JsonProperty("username") String username,
+                @JsonProperty("password") String password,
+                @JsonProperty("email") String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.link_ids = link_ids;
+        this.link_ids = new ArrayList<String>();
+        this.id = UUID.randomUUID();
     }
 
     public String getUsername() {
@@ -40,13 +51,19 @@ public class User {
         this.email = email;
     }
 
-    public String[] getLink_ids() {
+    public ArrayList<String> getLink_ids() {
         return link_ids;
     }
 
-    public void setLink_ids(String[] link_ids) {
+    public void setLink_ids(ArrayList<String> link_ids) {
         this.link_ids = link_ids;
     }
 
+    public int getLinkIndex() {
+        return linkIndex;
+    }
 
+    public void setLinkIndex(int linkIndex) {
+        this.linkIndex = linkIndex;
+    }
 }

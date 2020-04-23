@@ -51,60 +51,24 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        url: 'https://reactnative.dev/docs/network'
+        url: 'https://webmail.bilkent.edu.tr/?_task=logout&_token=rfwnEdWXYMawoKeVJiOcejZvkxY7S7NQ'
       }),
     }); 
     
   }
 
   render () {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Welcome to Ariba URL Shortener</Text>
-            </View>
-            
-            
-            <TouchableOpacity style={styles.button} onPress={this.onPress}>
-              <Text>You clicked {this.state.count} times !</Text>
-              </TouchableOpacity> 
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  ); 
-          }
+    return (
+      <>
+        <Navigator />
+  
+        <TouchableOpacity style={styles.button} onPress={this.onPress}>
+                <Text>You clicked {this.state.count} times !</Text>
+        </TouchableOpacity> 
+        
+      </>
+    ); 
+            }
 };
 
 const styles = StyleSheet.create({

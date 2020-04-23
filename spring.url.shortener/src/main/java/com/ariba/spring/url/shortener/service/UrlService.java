@@ -14,16 +14,23 @@ import java.util.Map;
 public class UrlService {
 
     private UrlDao urlDao;
+    private final long url_limit = (long)Math.pow(62,7);
 
     @Autowired
     public UrlService(UrlDao urlDao) {
         this.urlDao = urlDao;
     }
 
-    public void addUrl (Url url){
-        urlDao.saveUrl(url);
+    public int addUrl (Url url){
+        Url existing_url = urlDao.getUrlById(url.getId());
+        if (existing_url == null) {
+            urlDao.saveUrl(url);
+            return 1;
+        }
+        else {
+            return -1; //url with same id already exist
+        }
     }
-
 
     public Url getUrlById(String id){
         return urlDao.getUrlById(id);
@@ -83,5 +90,11 @@ public class UrlService {
         return Integer.toString(ultimate_id);
 
 
+    }
+
+    public String rand_id(){
+        long id = (long) (Math.random() * url_limit);
+        System.out.println(id);
+        return numericIdToMapped(Long.toString(id));
     }
 }
