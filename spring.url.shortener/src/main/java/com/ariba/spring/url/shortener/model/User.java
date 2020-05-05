@@ -66,4 +66,15 @@ public class User {
     public void setLinkIndex(int linkIndex) {
         this.linkIndex = linkIndex;
     }
+
+    public int deleteUserId(String url_id){
+        for (int i = 0 ; i< link_ids.size(); i++)
+        {
+            if( link_ids.get(i) == url_id){
+                link_ids.remove(i);
+                return 1;
+            }
+        }
+        return -1;
+    }
 }

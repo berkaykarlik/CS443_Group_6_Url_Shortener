@@ -1,9 +1,13 @@
 package com.ariba.spring.url.shortener.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+import java.util.Date;
+
+
+@Document(collection = "url")
 public class Url {
 
     @Id
@@ -11,9 +15,14 @@ public class Url {
 
     private final String url;
 
+    @Indexed(expireAfterSeconds = 3600)
+    private Date createdAt;
+
+
     public Url(String id, String url) {
         this.id = id;
         this.url = url;
+        this.createdAt = new Date();
     }
 
 

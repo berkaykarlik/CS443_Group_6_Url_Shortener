@@ -48,4 +48,8 @@ public class UserService {
             return false;
         else return true;
     }
+
+    public void updateUser(User user){
+        userDao.saveUser(user);
+    }
 }

@@ -103,7 +103,15 @@ public class UrlController {
         HashMap<String,String> map = new HashMap<>();
         while (iterator.hasNext()){
             String id = iterator.next();
-            map.put(id, urlService.getUrlById(id).getUrl());
+            Url tmp = urlService.getUrlById(id);
+            if (tmp == null){
+                User user = userService.getUser(username);
+                if (user.deleteUserId(id)==1)
+                    userService.updateUser(user);
+            }
+            else {
+                map.put(id, tmp.getUrl());
+            }
         }
         return ResponseEntity.accepted().body(map);
     }
