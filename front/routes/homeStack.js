@@ -5,8 +5,8 @@ import SignUp from '../screens/signup';
 import Login from '../screens/login';
 import Linkoptions from '../screens/linkoptions';
 import ShortLinkPage from '../screens/shortlinkpage';
-
- 
+import CustomLinkPage from '../screens/customlinkpage';
+import LinkAnalyticsPage from '../screens/linkanalyticspage';
 
 const screens = {
 
@@ -25,8 +25,14 @@ const screens = {
     },
     ShortLink: {
         screen: ShortLinkPage
-    }
+    },
+    CustomLink: {
+        screen: CustomLinkPage
+    },
+    LinkAnalytics: {
+        screen: LinkAnalyticsPage
 
+    }
 }
 
 const HomeStack = createStackNavigator(screens)

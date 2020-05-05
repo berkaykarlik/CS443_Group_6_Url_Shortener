@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
+import {ImageBackground,StyleSheet, View, Text, Button} from 'react-native';
 
 export default function Home({navigation}) {
 
@@ -14,14 +14,17 @@ export default function Home({navigation}) {
     }
     return(
         <View>
-            <Text>Home screen</Text>
-            <Text>Welcome to Ariba URL shortener</Text>
+            <ImageBackground source={require("../images/aribabackground.jpg")} style={{width: '100%', height: '100%'}}>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+            <Text style = {{fontSize:21, color:'#FF7700', fontFamily:'vincHand'}}>       Welcome to Ariba URL shortener</Text>
 
             <Text>{"\n"}</Text>
             <Button title='Register' onPress={pressHandlerRegister} />
 
             <Text>{"\n"}</Text>
             <Button title='Sign in' onPress={pressHandlerSignin} />
+            </ImageBackground>
         </View>
     )
 }

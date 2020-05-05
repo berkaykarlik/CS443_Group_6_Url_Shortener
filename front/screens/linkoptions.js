@@ -11,11 +11,11 @@ export default function LinkOptions({navigation}) {
 
     const pressHandlerCustomLink = () => 
     {
-
+        navigation.navigate('CustomLink',{username:navigation.getParam('username')})
     }
     const pressHandlerLinkAnalytics = () => 
     {
-
+        navigation.navigate('LinkAnalytics',{username:navigation.getParam('username')})
     }
 
     return(

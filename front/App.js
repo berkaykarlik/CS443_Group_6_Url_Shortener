@@ -62,9 +62,7 @@ class App extends Component {
       <>
         <Navigator />
   
-        <TouchableOpacity style={styles.button} onPress={this.onPress}>
-                <Text>You clicked {this.state.count} times !</Text>
-        </TouchableOpacity> 
+        
         
       </>
     ); 
